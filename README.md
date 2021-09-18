@@ -8,26 +8,26 @@
     <a href="https://eesc.usp.br/">
     <img src="https://img.shields.io/badge/Linked%20to-EESC--USP-black?style=for-the-badge"/>
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge"/>
+    <a href="https://github.com/zenitheesc/serverd/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/zenitheesc/serverd?style=for-the-badge"/>
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/issues">
-    <img src="https://img.shields.io/github/issues/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge"/>
+    <a href="https://github.com/zenitheesc/serverd/issues">
+    <img src="https://img.shields.io/github/issues/zenitheesc/serverd?style=for-the-badge"/>
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/commits/main">
-    <img src="https://img.shields.io/github/commit-activity/m/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge">
+    <a href="https://github.com/zenitheesc/serverd/commits/main">
+    <img src="https://img.shields.io/github/commit-activity/m/zenitheesc/serverd?style=for-the-badge">
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge"/>
+    <a href="https://github.com/zenitheesc/serverd/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/zenitheesc/serverd?style=for-the-badge"/>
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/commits/main">
-    <img src="https://img.shields.io/github/last-commit/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge"/>
+    <a href="https://github.com/zenitheesc/serverd/commits/main">
+    <img src="https://img.shields.io/github/last-commit/zenitheesc/serverd?style=for-the-badge"/>
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/issues">
-    <img src="https://img.shields.io/github/issues-raw/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge" />
+    <a href="https://github.com/zenitheesc/serverd/issues">
+    <img src="https://img.shields.io/github/issues-raw/zenitheesc/serverd?style=for-the-badge" />
     </a>
-    <a href="https://github.com/${{ env.REPOSITORY_FULL_NAME }}/pulls">
-    <img src = "https://img.shields.io/github/issues-pr-raw/${{ env.REPOSITORY_FULL_NAME }}?style=for-the-badge">
+    <a href="https://github.com/zenitheesc/serverd/pulls">
+    <img src = "https://img.shields.io/github/issues-pr-raw/zenitheesc/serverd?style=for-the-badge">
     </a>
 </p>
 
