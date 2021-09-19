@@ -25,7 +25,8 @@ void server(){
         nlohmann::json receivedJson;
         receivedJson = nlohmann::json::parse(req.body);
         printJSON(receivedJson);
-        res.set_content("mensagem recebida ^-^","text/plain");
+        std::string remote_addr = req.remote_addr;
+        res.set_content("mensagem recebida ^-^", "text/plain");
     });
     
     svr.set_error_handler([](const httplib::Request&, httplib::Response &res) {
