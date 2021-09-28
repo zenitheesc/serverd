@@ -3,25 +3,45 @@
 #include <vector>
 #include <mutex>
 #include <unistd.h>
+#include <thread>
 using namespace std;
 class MessagesBuffer{
     private:
-    map<string,string> messages;
     mutex m;
     public:
+    map<string,string> messages;
     void init(void){
-
+        thread t1(&MessagesBuffer::read, this);
+        thread t2(&MessagesBuffer::write, this);
+        t1.join();
+        t2.join();
     }
-    void write(string IP, string message){
-        messages.insert(pair<string, string>(IP, message));
-    }
-    void read(vector<string> &transmission){
-        lock_guard<mutex> lock(m);
-        for(auto it = messages.begin(); it!= messages.end(); it = messages.begin()){
-            sleep(1);
-            transmission.push_back(it->second);
-            messages.erase(it->first);
+    void write(){
+        string IP, message;
+        while(true){
+            lock_guard<mutex> lock(m);
+            cin>>IP;
+            cin>>message;
+            messages.insert(pair<string, string>(IP, message));
+            lock_guard<mutex> unlock(m);   
         }
+    }
+    void read(){
+        while(true){
+            sleep(2);
+            lock_guard<mutex> lock(m);
+            auto val = this->messages["1"];
+            cout<<val<<endl;
+            //messages.erase(val->first);
+            lock_guard<mutex> unlock(m);
+        }
+        
     }
 };
 
+int main(){
+    MessagesBuffer msg;
+    msg.messages["1"] = "Ola";
+    msg.init();
+    return 0;
+}
