@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include <sstream>
 #include <nlohmann/json.hpp>
-#define SYMBOL '#'
+#include <sstream>
+#include <string>
 
-namespace utils{
-    std::string concat (nlohmann::json json_parse);
-    std::string parse (nlohmann::json json_parse, int maxsize);
+
+namespace utils {
+std::string concat(nlohmann::json json_parse);
+std::string parse(nlohmann::json json_parse, int maxSize);
 }
