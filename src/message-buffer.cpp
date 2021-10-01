@@ -1,48 +1,33 @@
-#include <unistd.h>
+#include "message-buffer.hpp"
 
-#include <iostream>
-#include <map>
-#include <mutex>
-#include <thread>
-#include <vector>
-using namespace std;
-class MessagesBuffer {
-   private:
-    mutex m;
+MessagesBuffer::MessagesBuffer(int delay) {
+    m_thread =
+        std::make_unique<std::thread>(&MessagesBuffer::read, this, delay);
+    m_thread->detach();
+}
 
-   public:
-    map<string, string> messages;
-    void init(void) {
-        thread t1(&MessagesBuffer::read, this);
-        thread t2(&MessagesBuffer::write, this);
-        t1.join();
-        t2.join();
-    }
-    void write() {
-        string IP, message;
-        while (true) {
-            lock_guard<mutex> lock(m);
-            cin >> IP;
-            cin >> message;
-            messages.insert(pair<string, string>(IP, message));
-            lock_guard<mutex> unlock(m);
+void MessagesBuffer::read(int delay) {
+    auto it = m_messages.begin();
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(delay));
+
+        std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
+        l.try_lock_for(std::chrono::milliseconds(30));
+
+        if (it != m_messages.end()) {
+            std::cout << "leu: " << it->first << " => " << it->second
+                      << std::endl;
+            it = m_messages.erase(it);
+        } else {
+            it = m_messages.begin();
         }
     }
-    void read() {
-        while (true) {
-            sleep(2);
-            lock_guard<mutex> lock(m);
-            auto val = this->messages["1"];
-            cout << val << endl;
-            // messages.erase(val->first);
-            lock_guard<mutex> unlock(m);
-        }
-    }
-};
+}
 
-int main() {
-    MessagesBuffer msg;
-    msg.messages["1"] = "Ola";
-    msg.init();
-    return 0;
+void MessagesBuffer::write(std::string IP, std::string message) {
+    std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
+    l.try_lock_for(std::chrono::milliseconds(30));
+
+    m_messages[IP] = message;
+    std::cout << "Escreveu: " << IP << " => " << message << std::endl;
 }
