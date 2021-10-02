@@ -1,3 +1,4 @@
+#pragma once
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -10,8 +11,9 @@ class MessagesBuffer {
     std::timed_mutex m_mutex;
     std::unique_ptr<std::thread> m_thread;
     std::map<std::string, std::string> m_messages;
+    int delay;
 
-    void read(int delay);
+    void read();
 
    public:
     MessagesBuffer(int delay);
