@@ -16,7 +16,7 @@ class MessagesBuffer {
     void read();
 
    public:
-    MessagesBuffer(int delay);
+    MessagesBuffer(int m_delay);
 
     void write(std::string IP, std::string message);
 };
