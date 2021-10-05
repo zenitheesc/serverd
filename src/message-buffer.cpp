@@ -1,7 +1,6 @@
 #include "message-buffer.hpp"
 
-MessagesBuffer::MessagesBuffer(int delay) {
-    this->delay = delay;
+MessagesBuffer::MessagesBuffer(int m_delay):delay{m_delay} {
     m_thread =
         std::make_unique<std::thread>(&MessagesBuffer::read, this);
     m_thread->detach();
