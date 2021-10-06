@@ -21,9 +21,9 @@ std::string concat(nlohmann::json json_parse)
 /**
      * Parse a json to a string in a fixed size
      * @param json_parse json to be parsed
-     * @param maxSize sized to be delimitated
+     * @param max_size sized to be delimitated
      */
-std::string parse(nlohmann::json json_parse, int maxSize)
+std::string parse(nlohmann::json json_parse, int max_size)
 {
     std::string response = concat(json_parse);
     response.pop_back();
@@ -33,9 +33,9 @@ std::string parse(nlohmann::json json_parse, int maxSize)
         response.erase(position, 1);
     }
 
-    if (response.size() > maxSize) {
-        response.resize(maxSize);
-        int count = maxSize - 1;
+    if (response.size() > max_size) {
+        response.resize(max_size);
+        int count = max_size - 1;
         while (response[count] != ',') {
             response.pop_back();
             count--;
