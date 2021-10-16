@@ -65,7 +65,7 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
 
     std::ofstream file(path);
     std::cout << "Wrote file: " << path << std::endl;
-    //file << json;
+    file << json;
     file.close();
 }
 
