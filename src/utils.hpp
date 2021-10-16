@@ -4,8 +4,7 @@
 #include <sstream>
 #include <string>
 
-namespace utils
-{
-    std::string concat(nlohmann::json json_parse);
-    std::string parse(nlohmann::json json_parse, int max_size);
+namespace utils {
+auto concat(nlohmann::json json_parse) -> std::string;
+auto parse(nlohmann::json json_parse, int max_size) -> std::string;
 }
