@@ -47,4 +47,30 @@ auto parse(nlohmann::json json_parse, int max_size) -> std::string
     return response;
 }
 
+void saveJson(nlohmann::json json)
+{
+    std::ofstream file;
+    std::stringstream fileName;
+    fileName << "jsons/";
+
+    time_t rawtime;
+    struct tm* timeinfo;
+
+    constexpr int bufferSize(80);
+    std::array<char, bufferSize> buffer;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer.data(), bufferSize, "%F-%H-%M-%S", timeinfo);
+    fileName << buffer.data();
+
+    fileName << ".json";
+    std::cout << "Wrote file: " << fileName.str() << std::endl;
+    file.open(fileName.str());
+    file << json;
+
+    file.close();
+}
+
 } // namespace utils
