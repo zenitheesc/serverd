@@ -6,7 +6,7 @@
 #include <string>
 #include <thread>
 
-int main(int argc, char* argv[])
+auto main(int argc, char* argv[]) -> int
 {
     const char* host;
     int port;

@@ -6,7 +6,7 @@ namespace utils {
      * @param json_parse json to be parsed
      * @return parsed value
      */
-std::string concat(nlohmann::json json_parse)
+auto concat(nlohmann::json json_parse) -> std::string
 {
     std::stringstream parsed;
     for (auto& el : json_parse) {
@@ -18,12 +18,13 @@ std::string concat(nlohmann::json json_parse)
     }
     return parsed.str();
 }
+
 /**
      * Parse a json to a string in a fixed size
      * @param json_parse json to be parsed
      * @param max_size sized to be delimitated
      */
-std::string parse(nlohmann::json json_parse, int max_size)
+auto parse(nlohmann::json json_parse, int max_size) -> std::string
 {
     std::string response = concat(json_parse);
     response.pop_back();
@@ -45,4 +46,5 @@ std::string parse(nlohmann::json json_parse, int max_size)
 
     return response;
 }
-}
+
+} // namespace utils
