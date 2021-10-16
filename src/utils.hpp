@@ -2,6 +2,7 @@
 
 #include <array>
 #include <ctime>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
@@ -11,5 +12,5 @@
 namespace utils {
 auto concat(nlohmann::json json_parse) -> std::string;
 auto parse(nlohmann::json json_parse, int max_size) -> std::string;
-void saveJson(nlohmann::json json);
+void saveJson(const nlohmann::json& json, std::filesystem::path path = "");
 }
