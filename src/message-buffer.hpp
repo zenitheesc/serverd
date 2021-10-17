@@ -7,16 +7,16 @@
 #include <thread>
 
 class MessagesBuffer {
-   private:
+private:
     std::timed_mutex m_mutex;
     std::unique_ptr<std::thread> m_thread;
-    std::map<std::string, std::string> m_messages;
+    std::map<std::uint8_t, std::string> m_messages;
     int delay;
 
     void read();
 
-   public:
+public:
     MessagesBuffer(int m_delay);
 
-    void write(std::string IP, std::string message);
+    void write(std::uint8_t IP, std::string message);
 };
