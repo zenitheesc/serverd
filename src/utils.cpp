@@ -50,7 +50,7 @@ auto parse(nlohmann::json json_parse, int max_size) -> std::string
 void saveJson(const nlohmann::json& json, std::filesystem::path path)
 {
     if (!std::filesystem::is_directory(path)) {
-        throw std::invalid_argument("path is not a directory");
+        throw std::invalid_argument("Path is not a directory");
     }
 
     time_t rawtime;
