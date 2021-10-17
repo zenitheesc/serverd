@@ -9,3 +9,6 @@
 
  add_executable(serverd src/server.cpp src/utils.cpp src/message-buffer.cpp)
  target_link_libraries(serverd ${CONAN_LIBS})
+
+ enable_testing()
+ add_subdirectory(tests)
