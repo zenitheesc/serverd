@@ -47,6 +47,11 @@ auto parse(nlohmann::json json_parse, int max_size) -> std::string
     return response;
 }
 
+/**
+ * Saves a JSON
+ * @param json to be saved
+ * @param path to save the json
+ */
 void saveJson(const nlohmann::json& json, std::filesystem::path path)
 {
     if (!std::filesystem::is_directory(path)) {
