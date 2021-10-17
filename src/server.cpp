@@ -28,9 +28,7 @@ auto main(int argc, char* argv[]) -> int
         nlohmann::json receivedJson;
         receivedJson = nlohmann::json::parse(req.body);
 
-        std::string remote_addr = req.remote_addr;
-
-        buffer.write(remote_addr, utils::parse(receivedJson, 26));
+        buffer.write(utils::parseIP(req.remote_addr), utils::parseJson(receivedJson, 26));
         utils::saveJson(receivedJson);
 
         res.set_content("received message", "text/plain");
