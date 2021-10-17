@@ -53,9 +53,6 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
         throw std::invalid_argument("path is not a directory");
     }
 
-    if (!std::filesystem::exists(path)) {
-        std::filesystem::create_directory(path);
-    }
     time_t rawtime;
     struct tm* timeinfo;
 
@@ -67,7 +64,7 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
 
     strftime(buffer.data(), bufferSize, "%F-%H-%M-%S", timeinfo);
 
-    path += buffer.data();
+    path /= buffer.data();
     path += ".json";
 
     std::ofstream file(path);
