@@ -27,8 +27,12 @@ auto main(int argc, char* argv[]) -> int
     svr.Post("/", [&buffer](const httplib::Request& req, httplib::Response& res) {
         nlohmann::json receivedJson;
         receivedJson = nlohmann::json::parse(req.body);
+
         std::string remote_addr = req.remote_addr;
+
         buffer.write(remote_addr, utils::parse(receivedJson, 26));
+        utils::saveJson(receivedJson);
+
         res.set_content("received message", "text/plain");
     });
 
