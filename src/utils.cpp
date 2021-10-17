@@ -24,7 +24,7 @@ auto concat(nlohmann::json json_parse) -> std::string
      * @param json_parse json to be parsed
      * @param max_size sized to be delimitated
      */
-auto parse(nlohmann::json json_parse, int max_size) -> std::string
+auto parseJson(nlohmann::json json_parse, int max_size) -> std::string
 {
     std::string response = concat(json_parse);
     response.pop_back();
