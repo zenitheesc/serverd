@@ -27,7 +27,7 @@ void MessagesBuffer::read()
     }
 }
 
-void MessagesBuffer::write(std::string IP, std::string message)
+void MessagesBuffer::write(std::uint8_t IP, std::string message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
     l.try_lock_for(std::chrono::milliseconds(30));

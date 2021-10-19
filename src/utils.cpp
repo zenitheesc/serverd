@@ -24,7 +24,7 @@ auto concat(nlohmann::json json_parse) -> std::string
      * @param json_parse json to be parsed
      * @param max_size sized to be delimitated
      */
-auto parse(nlohmann::json json_parse, int max_size) -> std::string
+auto parseJson(nlohmann::json json_parse, int max_size) -> std::string
 {
     std::string response = concat(json_parse);
     response.pop_back();
@@ -76,6 +76,16 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
     std::cout << "Wrote file: " << path << std::endl;
     file << json;
     file.close();
+}
+
+/**
+ * Takes the last byte from a IP
+ * @param ip string contaning the IP
+ * @return last byte from the IP
+ */
+auto parseIP(const std::string& ip) -> uint8_t
+{
+    return std::stoi(ip.substr(ip.rfind(".") + 1, 3));
 }
 
 } // namespace utils
