@@ -1,14 +1,14 @@
- cmake_minimum_required(VERSION 3.16.3)
- project(ServerD)
+cmake_minimum_required(VERSION 3.16.3)
+project(ServerD)
 
- add_definitions("-std=c++17")
- set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_definitions("-std=c++17")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
- include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
- conan_basic_setup()
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
 
- add_executable(serverd src/server.cpp src/utils.cpp src/message-buffer.cpp)
- target_link_libraries(serverd ${CONAN_LIBS})
+add_executable(serverd src/server.cpp src/utils.cpp src/message-buffer.cpp)
+target_link_libraries(serverd ${CONAN_LIBS})
 
- enable_testing()
- add_subdirectory(tests)
+enable_testing()
+add_subdirectory(tests)
