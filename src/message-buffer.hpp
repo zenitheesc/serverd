@@ -16,7 +16,7 @@ private:
     void read();
 
 public:
-    MessagesBuffer(int m_delay);
+    explicit MessagesBuffer(int m_delay);
 
-    void write(std::uint8_t IP, std::string message);
+    void write(std::uint8_t id, std::string message);
 };
