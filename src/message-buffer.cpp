@@ -18,7 +18,7 @@ void MessagesBuffer::read()
 
         if (it != m_messages.end()) {
             //mostrar conteudo
-            std::cout << it->first << " : " << it->second << std::endl;
+            std::cout << static_cast<int>(it->first) << " : " << it->second << std::endl;
 
             it = m_messages.erase(it);
         } else {
@@ -27,10 +27,10 @@ void MessagesBuffer::read()
     }
 }
 
-void MessagesBuffer::write(std::uint8_t IP, std::string message)
+void MessagesBuffer::write(std::uint8_t id, std::string message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
     l.try_lock_for(std::chrono::milliseconds(30));
 
-    m_messages[IP] = message;
+    m_messages[id] = message;
 }
