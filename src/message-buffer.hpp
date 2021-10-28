@@ -3,8 +3,26 @@
 #include <iostream>
 #include <map>
 #include <mutex>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <thread>
+#include <vector>
+
+class Message {
+private:
+    std::vector<std::uint8_t> m_message;
+    std::size_t m_maxSize;
+    std::size_t m_currSize;
+
+    void write(const nlohmann::json& json);
+    template <typename T>
+    void save(const nlohmann::json& json);
+
+public:
+    explicit Message(std::size_t maxSize);
+    void operator<<(const nlohmann::json& json);
+    void operator>>(nlohmann::json& json);
+};
 
 class MessagesBuffer {
 private:
