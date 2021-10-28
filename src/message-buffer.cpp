@@ -61,6 +61,12 @@ void Message::operator<<(const nlohmann::json& json)
         }
     }
 }
+
+void Message::operator>>(nlohmann::json& json)
+{
+    json = m_message;
+}
+
 MessagesBuffer::MessagesBuffer(int m_delay)
     : delay { m_delay }
 {
