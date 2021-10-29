@@ -28,7 +28,7 @@ class MessagesBuffer {
 private:
     std::timed_mutex m_mutex;
     std::unique_ptr<std::thread> m_thread;
-    std::map<std::uint8_t, std::string> m_messages;
+    std::map<std::uint8_t, Message> m_messages;
     int delay;
 
     void read();
@@ -36,5 +36,5 @@ private:
 public:
     explicit MessagesBuffer(int m_delay);
 
-    void write(std::uint8_t id, std::string message);
+    void write(std::uint8_t id, const nlohmann::json& message);
 };
