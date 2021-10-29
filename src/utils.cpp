@@ -83,9 +83,4 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
  * @param ip string contaning the IP
  * @return last byte from the IP
  */
-auto parseIP(const std::string& ip) -> uint8_t
-{
-    return std::stoi(ip.substr(ip.rfind(".") + 1, 3));
-}
-
 } // namespace utils
