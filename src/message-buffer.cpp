@@ -40,6 +40,10 @@ void Message::write(const nlohmann::json& json)
         save<float>(json);
         break;
     }
+    case nlohmann::detail::value_t::number_unsigned: {
+        save<std::uint16_t>(json);
+        break;
+    }
     case nlohmann::detail::value_t::boolean: {
         save<bool>(json);
         break;
@@ -85,7 +89,9 @@ void MessagesBuffer::read()
 
         if (it != m_messages.end()) {
             //mostrar conteudo
-            std::cout << static_cast<int>(it->first) << " : " << it->second << std::endl;
+            nlohmann::json jsonVector;
+            it->second >> jsonVector;
+            std::cout << static_cast<int>(it->first) << " : " << jsonVector << std::endl;
 
             it = m_messages.erase(it);
         } else {
@@ -94,10 +100,11 @@ void MessagesBuffer::read()
     }
 }
 
-void MessagesBuffer::write(std::uint8_t id, std::string message)
+void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
     l.try_lock_for(std::chrono::milliseconds(30));
-
-    m_messages[id] = message;
+    Message messageObj(26);
+    messageObj << message;
+    m_messages.insert(std::make_pair(id, messageObj));
 }
