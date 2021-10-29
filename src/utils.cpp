@@ -77,10 +77,4 @@ void saveJson(const nlohmann::json& json, std::filesystem::path path)
     file << json;
     file.close();
 }
-
-/**
- * Takes the last byte from a IP
- * @param ip string contaning the IP
- * @return last byte from the IP
- */
 } // namespace utils
