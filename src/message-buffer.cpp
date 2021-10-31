@@ -10,23 +10,21 @@ Message::Message(std::size_t maxSize)
 template <typename T>
 void Message::save(const nlohmann::json& json)
 {
-    if (m_currSize + sizeof(T) > m_maxSize) {
-        return;
-    }
     T value = json;
+    if (m_currSize + sizeof(T) <= m_maxSize) {
     std::memcpy(m_message.data() + m_currSize, &value, sizeof(T));
     m_currSize += sizeof(T);
+    }
 }
 
 template <>
 void Message::save<std::string>(const nlohmann::json& json)
 {
     std::string value = json;
-    if (m_currSize + value.size() > m_maxSize) {
-        return;
-    }
+    if (m_currSize + value.size() <= m_maxSize) {
     std::memcpy(m_message.data() + m_currSize, value.data(), value.size());
     m_currSize += value.size();
+    }
 }
 
 void Message::write(const nlohmann::json& json)
