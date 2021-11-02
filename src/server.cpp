@@ -28,7 +28,10 @@ auto main(int argc, char* argv[]) -> int
         nlohmann::json receivedJson;
         receivedJson = nlohmann::json::parse(req.body);
 
-        buffer.write(receivedJson["equipe"], receivedJson["payload"]);
+        int id = receivedJson["equipe"];
+        nlohmann::json payload = receivedJson["payload"];
+
+        buffer.write(id, payload);
         utils::saveJson(receivedJson);
 
         res.set_content("received message", "text/plain");
