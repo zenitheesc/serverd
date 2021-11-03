@@ -28,9 +28,10 @@ auto main(int argc, char* argv[]) -> int
         nlohmann::json receivedJson;
         receivedJson = nlohmann::json::parse(req.body);
 
-        std::uint8_t id = receivedJson["equipe"];
+        int id = receivedJson["equipe"];
+        nlohmann::json payload = receivedJson["payload"];
 
-        buffer.write(id, utils::parseJson(receivedJson, 26));
+        buffer.write(id, payload);
         utils::saveJson(receivedJson);
 
         res.set_content("received message", "text/plain");
