@@ -32,7 +32,7 @@ auto main(int argc, char* argv[]) -> int
         nlohmann::json payload = receivedJson["payload"];
 
         buffer.write(id, payload);
-        utils::saveJson(receivedJson);
+        utils::saveJson(receivedJson, std::to_string(id));
 
         res.set_content("received message", "text/plain");
     });
