@@ -9,7 +9,7 @@ namespace utils {
 void saveJson(const nlohmann::json& json, std::filesystem::path path)
 {
     if (!std::filesystem::is_directory(path)) {
-        throw std::invalid_argument("Path is not a directory");
+        std::filesystem::create_directory(path);
     }
 
     time_t rawtime;
