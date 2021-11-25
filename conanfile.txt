@@ -1,7 +1,0 @@
-[requires]
-cpp-httplib/0.9.3
-nlohmann_json/3.10.2
-gtest/cci.20210126
-
-[generators]
-cmake
