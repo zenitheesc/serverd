@@ -1,4 +1,4 @@
-#include "../src/message-buffer.hpp"
+#include "../../src/message-buffer.hpp"
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 
