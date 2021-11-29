@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/filipdutescu/modern-cpp-template/workflows/Ubuntu/badge.svg)](https://github.com/filipdutescu/modern-cpp-template/actions)
+
 <h1 align="center" style="color:white; background-color:black">Serverd</h1>
 <h4 align="center">A server based on the frameworkd</h4>
 
