@@ -48,12 +48,6 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 endif()
 
 #
-# Enable package managers
-#
-
-include(cmake/Conan.cmake)
-
-#
 # Create library, setup header and source files
 #
 
