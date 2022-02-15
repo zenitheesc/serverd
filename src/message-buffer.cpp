@@ -12,8 +12,8 @@ void Message::save(const nlohmann::json& json)
 {
     T value = json;
     if (m_currSize + sizeof(T) <= m_maxSize) {
-    std::memcpy(m_message.data() + m_currSize, &value, sizeof(T));
-    m_currSize += sizeof(T);
+        std::memcpy(m_message.data() + m_currSize, &value, sizeof(T));
+        m_currSize += sizeof(T);
     }
 }
 
@@ -22,8 +22,8 @@ void Message::save<std::string>(const nlohmann::json& json)
 {
     std::string value = json;
     if (m_currSize + value.size() <= m_maxSize) {
-    std::memcpy(m_message.data() + m_currSize, value.data(), value.size());
-    m_currSize += value.size();
+        std::memcpy(m_message.data() + m_currSize, value.data(), value.size() + 1);
+        m_currSize += value.size() + 1;
     }
 }
 
@@ -86,7 +86,7 @@ void MessagesBuffer::read()
         l.try_lock_for(std::chrono::milliseconds(30));
 
         if (it != m_messages.end()) {
-            //mostrar conteudo
+            // mostrar conteudo
             nlohmann::json jsonVector;
             it->second >> jsonVector;
             std::cout << static_cast<int>(it->first) << " : " << jsonVector << std::endl;
