@@ -96,7 +96,9 @@ and the second is the port, the deafult is 8080. You can use the arguments as st
 
 ## How to contribute
 
-Feel free to make issues and pull requests
+We love when new people come and help us to improve our software! If you want to contribute to this project, check our Projects board and pick an idea to develop. When you finish coding, make a clear and descriptive pull request explaining your modifications.
+
+If you find any sort of problem or have a suggestion to the project, please write an issue and we will be pleased to help you!
 
 ---
 
