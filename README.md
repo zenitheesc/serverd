@@ -39,6 +39,8 @@
     <a href="#how-to-contribute">How to contribute?</a> •
 </p>
 
+[Versão em Portguês](README.pt.md)
+
 ## How to run
 
 You can either download the binary on the [Releases section](https://github.com/zenitheesc/serverd/releases), or you can build the project following the steps bellow
