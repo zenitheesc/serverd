@@ -41,7 +41,7 @@
 
 ## How to run
 
-You can either download the binary on the release section, or you can build the project following the steps bellow
+You can either download the binary on the [Releases section](https://github.com/zenitheesc/serverd/releases), or you can build the project following the steps bellow
 
 ## Dependencies
 
@@ -49,9 +49,17 @@ You can either download the binary on the release section, or you can build the 
 - [nlohmann's json library](https://github.com/nlohmann/json)
 - [cpp-httplib](https://github.com/yhirose/cpp-httplib)
 
-## Steps to run and debug
+## How to build
 
-To build the project run these steps
+First you need to install the necessary dependencies, on ubuntu you can install with this command
+
+```bash
+sudo apt install cmake nlohmann-json3-dev
+```
+
+For the cpp-httplib you have to clone the repo and follow the instructions on the [CMakeLists.txt](https://github.com/yhirose/cpp-httplib/blob/master/CMakeLists.txt)
+
+After completing the dependencies, you can build the server with these steps
 
 ```bash
 mkdir build && cd build
