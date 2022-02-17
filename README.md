@@ -39,7 +39,9 @@
     <a href="#how-to-contribute">How to contribute?</a> •
 </p>
 
-## Environment and tools
+## How to run
+
+You can either download the binary on the release section, or you can build the project following the steps bellow
 
 ## Dependencies
 
