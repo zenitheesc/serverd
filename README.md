@@ -95,7 +95,15 @@ The server receives JSON's in OBSAT's format, like the example below
 }
 ```
 
-To send a json via curl type this command
+A simple test can be made following these two steps
+
+Install curl
+
+```bash
+sudo apt install curl
+```
+Send a JSON via curl
+
 ```bash
 curl --data @"<path-to-json>" localhost:8080
 ```
