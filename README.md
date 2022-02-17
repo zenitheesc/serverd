@@ -1,5 +1,3 @@
-[![Actions Status](https://github.com/filipdutescu/modern-cpp-template/workflows/Ubuntu/badge.svg)](https://github.com/filipdutescu/modern-cpp-template/actions)
-
 <h1 align="center" style="color:white; background-color:black">Serverd</h1>
 <h4 align="center">A server based on the frameworkd</h4>
 
@@ -40,11 +38,13 @@
     <a href="#how-to-contribute">How to contribute?</a> •
 </p>
 
-[Versão em Portguês](README.pt.md)
+<p align="center">
+        <a href="README.pt.md">Versão em Portguês</a>
+</p>
 
 ## How to run
 
-You can either download the binary on the [Releases section](https://github.com/zenitheesc/serverd/releases), or you can build the project following the steps bellow
+You can either download the binary on the [Releases section](https://github.com/zenitheesc/serverd/releases), or you can build the project following the steps bellow.
 
 ## Dependencies
 
@@ -54,15 +54,15 @@ You can either download the binary on the [Releases section](https://github.com/
 
 ## How to build
 
-First you need to install the necessary dependencies, on ubuntu you can install with this command
+First you need to install the necessary dependencies. On Debian based systems, you can install with the following command:
 
 ```bash
 sudo apt install cmake nlohmann-json3-dev
 ```
 
-For the cpp-httplib you have to clone the repo and follow the instructions on the [CMakeLists.txt](https://github.com/yhirose/cpp-httplib/blob/master/CMakeLists.txt)
+For the cpp-httplib you have to clone the repo and follow the instructions on the [CMakeLists.txt](https://github.com/yhirose/cpp-httplib/blob/master/CMakeLists.txt).
 
-After completing the dependencies, you can build the server with these steps
+After completing the dependencies, you can build the server with these steps:
 
 ```bash
 mkdir build && cd build
@@ -70,15 +70,15 @@ cmake ..
 make
 ```
 
-To run the server just run
+To run the server just run:
 
 ```bash
 ./bin/Debug/Serverd
 ```
 
-To test it you can use curl or any http client
+To test it you can use curl or any http client.
 
-The server receives JSON's in OBSAT's format, like the example below
+The server receives JSON's in OBSAT's format, like the example below:
 
 ```json
 {
@@ -98,21 +98,21 @@ The server receives JSON's in OBSAT's format, like the example below
 }
 ```
 
-A simple test can be made following these two steps
+A simple test can be made following these two steps.
 
-Install curl
+Install curl.
 
 ```bash
 sudo apt install curl
 ```
-Send a JSON via curl
+Send a JSON via curl.
 
 ```bash
 curl --data @"<path-to-json>" localhost:8080
 ```
 
 The server can accept two argument, the first one is the ip, the default is localhost
-and the second is the port, the deafult is 8080. You can use the arguments as stated below
+and the second is the port, the deafult is 8080. You can use the arguments as stated below:
 
 ```bash
 ./bin/Debug/Serverd <ip> <port>
