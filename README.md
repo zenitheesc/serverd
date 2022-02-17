@@ -41,27 +41,72 @@
 
 ## Environment and tools
 
-`Add list of dependencies and software needed to run this project (if possible add the versions that were used in development).`
+- [nlohmann's json library](https://github.com/nlohmann/json)
+- [cpp-httplib](https://github.com/yhirose/cpp-httplib)
 
 ## Steps to run and debug
 
-`A simple list of steps indicating how one can run and test the project.`
+To build the project run these steps
+
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+To run the server just run
+
+```bash
+./bin/Debug/Serverd
+```
+
+To test it you can use curl or any http client
+
+The server receives JSON's in OBSAT's format, like the example below
+
+```json
+{
+	"equipe": 41,
+	"bateria": 24,
+	"temperatura": 30,
+	"pressao": 1,
+	"giroscopio": [42,90,30],
+	"acelerometro": [10,3,4],
+	"payload": {
+		"valor1": 3.1415,
+		"classe":{
+			"array1":[12,123,543],
+			"valor2": "string"
+		}
+	}
+}
+```
+
+To send a json via curl type this command
+```bash
+curl --data @"<path-to-json>" localhost:8080
+```
+
+The server can accept two argument, the first one is the ip, the default is localhost
+and the second is the port, the deafult is 8080. You can use the arguments as stated below
+
+```bash
+./bin/Debug/Serverd <ip> <port>
+```
 
 ## How to contribute
 
-`(optional, depends on the project) list of simple rules to help people work on the project.`
-
-`Examples: How to format a pull request\n How to format an issue`
+Feel free to make issues and pull requests
 
 ---
 
 <p align="center">
     <a href="http://zenith.eesc.usp.br">
     <img src="https://img.shields.io/badge/Check%20out-Zenith's Oficial Website-black?style=for-the-badge" />
-    </a> 
+    </a>
     <a href="https://www.facebook.com/zenitheesc">
     <img src="https://img.shields.io/badge/Like%20us%20on-facebook-blue?style=for-the-badge"/>
-    </a> 
+    </a>
     <a href="https://www.instagram.com/zenith_eesc/">
     <img src="https://img.shields.io/badge/Follow%20us%20on-Instagram-red?style=for-the-badge"/>
     </a>
