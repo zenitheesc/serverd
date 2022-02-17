@@ -41,6 +41,9 @@
 
 ## Environment and tools
 
+## Dependencies
+
+- [cmake](https://cmake.org/)
 - [nlohmann's json library](https://github.com/nlohmann/json)
 - [cpp-httplib](https://github.com/yhirose/cpp-httplib)
 
