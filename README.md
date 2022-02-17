@@ -34,8 +34,9 @@
 </p>
 
 <p align="center">
-    <a href="#environment-and-tools">Environment and Tools</a> •
-    <a href="#steps-to-run-and-debug">Steps to run and debug</a> •
+    <a href="#how-to-run">How to run?</a> •
+    <a href="#dependencies">Dependencies?</a> •
+    <a href="#how-to-build">How to build?</a> •
     <a href="#how-to-contribute">How to contribute?</a> •
 </p>
 
