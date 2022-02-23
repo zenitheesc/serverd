@@ -71,6 +71,7 @@ void Message::operator>>(nlohmann::json& json)
 
 MessagesBuffer::MessagesBuffer(int m_delay)
     : delay { m_delay }
+    , m_currMessage { 26 }
 {
     m_thread = std::make_unique<std::thread>(&MessagesBuffer::read, this);
     m_thread->detach();
@@ -108,4 +109,16 @@ void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
     messageObj << message;
 
     m_messages.insert(std::make_pair(id, messageObj));
+
+    m_currMessage = messageObj;
+}
+
+auto MessagesBuffer::getCurrMessage() -> nlohmann::json
+{
+    std::unique_lock<std::timed_mutex> l { m_mutex, std::defer_lock };
+    l.try_lock_for(std::chrono::milliseconds(30));
+
+    nlohmann::json json;
+    m_currMessage >> json;
+    return json;
 }
