@@ -102,7 +102,10 @@ void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
     l.try_lock_for(std::chrono::milliseconds(30));
-    Message messageObj(26);
+
+    constexpr int numBytes = 90;
+    Message messageObj(numBytes);
     messageObj << message;
+
     m_messages.insert(std::make_pair(id, messageObj));
 }
