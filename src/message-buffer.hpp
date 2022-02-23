@@ -20,6 +20,7 @@ private:
 
 public:
     explicit Message(std::size_t maxSize);
+
     void operator<<(const nlohmann::json& json);
     void operator>>(nlohmann::json& json);
 };
@@ -28,7 +29,10 @@ class MessagesBuffer {
 private:
     std::timed_mutex m_mutex;
     std::unique_ptr<std::thread> m_thread;
+
     std::map<std::uint8_t, Message> m_messages;
+    Message m_currMessage;
+
     int delay;
 
     void read();
@@ -36,5 +40,6 @@ private:
 public:
     explicit MessagesBuffer(int m_delay);
 
+    auto getCurrMessage() -> nlohmann::json;
     void write(std::uint8_t id, const nlohmann::json& message);
 };
