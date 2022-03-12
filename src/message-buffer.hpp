@@ -15,11 +15,12 @@ private:
     std::size_t m_currSize;
 
     void write(const nlohmann::json& json);
-    template <typename T>
-    void save(const nlohmann::json& json);
 
 public:
     explicit Message(std::size_t maxSize);
+
+    template <typename T>
+    void save(const nlohmann::json& json);
 
     void operator<<(const nlohmann::json& json);
     void operator>>(nlohmann::json& json);

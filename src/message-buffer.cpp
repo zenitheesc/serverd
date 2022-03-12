@@ -106,6 +106,8 @@ void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
 
     constexpr int numBytes = 90;
     Message messageObj(numBytes);
+
+    messageObj.save<std::int8_t>(id);
     messageObj << message;
 
     m_messages.insert(std::make_pair(id, messageObj));
