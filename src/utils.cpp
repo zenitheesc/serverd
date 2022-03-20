@@ -1,22 +1,34 @@
 #include "utils.hpp"
 
-void utils::printJSON(nlohmann::json json)
+namespace utils {
+/**
+ * Saves a JSON
+ * @param json to be saved
+ * @param path to save the json
+ */
+void saveJson(const nlohmann::json& json, std::filesystem::path path)
 {
-    if (json.is_object()) {
-        for (auto& el : json.items()) {
-            if (el.value().is_structured()) {
-                printJSON(el.value());
-            } else {
-                std::cout << el.key() << ":" << el.value() << std::endl;
-            }
-        }
-    } else {
-        for (auto& el : json) {
-            if (el.is_structured()) {
-                printJSON(el);
-            } else {
-                std::cout << el << std::endl;
-            }
-        }
+    if (!std::filesystem::is_directory(path)) {
+        std::filesystem::create_directory(path);
     }
+
+    time_t rawtime;
+    struct tm* timeinfo;
+
+    constexpr int bufferSize(80);
+    std::array<char, bufferSize> buffer;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer.data(), bufferSize, "%F-%H-%M-%S", timeinfo);
+
+    path /= buffer.data();
+    path += ".json";
+
+    std::ofstream file(path);
+    std::cout << "Wrote file: " << path << std::endl;
+    file << json;
+    file.close();
 }
+} // namespace utils
