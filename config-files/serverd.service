@@ -1,0 +1,11 @@
+[Unit]
+Description=Server based on the frameworkd 
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/serverd
+ExecReload=/bin/kill -HUP $MAINPID
+SyslogIdentifier=serverd
+
+[Install]
+WantedBy=multi-user.target
