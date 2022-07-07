@@ -1,0 +1,7 @@
+{
+	"serviceId": "serverd",
+	"proxys": {
+		"serverd": {}
+	},
+	"data": {}
+}

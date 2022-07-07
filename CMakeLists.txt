@@ -152,6 +152,9 @@ include(cmake/Doxygen.cmake)
 # Identify and link with the specific "packages" the project uses
 find_package(nlohmann_json REQUIRED)
 find_package(httplib REQUIRED)
+find_package(frameworkd REQUIRED)
+find_package(sdbus-c++ REQUIRED)
+
 #find_package(package_name package_version REQUIRED package_type [other_options])
 target_link_libraries(
   ${PROJECT_NAME}
@@ -159,6 +162,7 @@ target_link_libraries(
 #    dependency1 ...
   PRIVATE
   nlohmann_json::nlohmann_json
+  frameworkd::frameworkd
   httplib::httplib
 )
 if(${PROJECT_NAME}_BUILD_EXECUTABLE AND ${PROJECT_NAME}_ENABLE_UNIT_TESTING)
@@ -167,6 +171,7 @@ if(${PROJECT_NAME}_BUILD_EXECUTABLE AND ${PROJECT_NAME}_ENABLE_UNIT_TESTING)
     PUBLIC
 	  httplib::httplib
 	  nlohmann_json::nlohmann_json
+	  frameworkd::frameworkd
   )
 endif()
 

@@ -32,9 +32,9 @@ private:
     std::unique_ptr<std::thread> m_thread;
 
     std::map<std::uint8_t, Message> m_messages;
-    Message m_currMessage;
-
     int delay;
+
+    Message m_currMessage;
 
     void read();
 
