@@ -21,7 +21,6 @@ public:
         : RoutineService { "serverd" }
         , m_host { host }
         , m_port { port }
-        , m_buffer { buffer_size }
     {
     }
 
@@ -53,12 +52,12 @@ public:
             res.set_content(error, "text/plain");
         });
 
-        m_svr.set_exception_handler([](const httplib::Request& req, httplib::Response& res, std::exception& e) {
+        m_svr.set_exception_handler([](const httplib::Request&, httplib::Response& res, std::exception& e) {
             std::cout << e.what() << std::endl;
             res.set_content("exception raised", "text/plain");
         });
 
-        DBusHandler::registerMethod(m_requestPath, [&](nlohmann::json req) {
+        DBusHandler::registerMethod(m_requestPath, [&](nlohmann::json) {
             return m_buffer.getCurrMessage();
         });
     }
