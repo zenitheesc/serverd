@@ -88,7 +88,7 @@ auto main(int argc, char* argv[]) -> int
         throw std::invalid_argument("invalid number of arguments");
     }
 
-    Daemon serverd { "serverd.json" };
+    Daemon serverd { "serverd" };
     ServerdService serverdService { host, port };
     serverd.deploy(serverdService);
     serverd.run();
