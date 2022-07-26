@@ -30,7 +30,7 @@ make
 Para rodá-lo use o comando abaixo:
 
 ```bash
-./bin/Debug/Serverd
+./bin/Debug/serverd
 ```
 
 Para testar você pode usar o curl ou qualquer outro cliente http.
@@ -73,7 +73,7 @@ O servidor pode aceitar dois argumentos, o primeiro é o ip, o padrão é localh
 e o segundo é a porta, por padrão é a 8080, Você pode usar os argumentos como é demonstrado abaixo:
 
 ```bash
-./bin/Debug/Serverd <ip> <porta>
+./bin/Debug/serverd <ip> <porta>
 ```
 
 ## Como contribuir
