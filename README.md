@@ -73,7 +73,7 @@ make
 To run the server just run:
 
 ```bash
-./bin/Debug/Serverd
+./bin/Debug/serverd
 ```
 
 To test it you can use curl or any http client.
@@ -115,7 +115,7 @@ The server can accept two argument, the first one is the ip, the default is loca
 and the second is the port, the deafult is 8080. You can use the arguments as stated below:
 
 ```bash
-./bin/Debug/Serverd <ip> <port>
+./bin/Debug/serverd <ip> <port>
 ```
 
 ## How to contribute

@@ -3,8 +3,9 @@ Description=Server based on the frameworkd
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/serverd
+ExecStart=/usr/local/bin/serverd 0.0.0.0 8080
 ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=/usr/share/serverd
 SyslogIdentifier=serverd
 
 [Install]
