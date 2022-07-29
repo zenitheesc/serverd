@@ -1,4 +1,5 @@
 #include "message-buffer.hpp"
+#include <algorithm>
 
 Message::Message(std::size_t maxSize)
     : m_maxSize(maxSize)
@@ -50,6 +51,8 @@ void Message::write(const nlohmann::json& json)
         save<std::string>(json);
         break;
     }
+    default:
+        break;
     }
 }
 
@@ -69,36 +72,6 @@ void Message::operator>>(nlohmann::json& json)
     json = m_message;
 }
 
-MessagesBuffer::MessagesBuffer(int m_delay)
-    : delay { m_delay }
-    , m_currMessage { 26 }
-{
-    m_thread = std::make_unique<std::thread>(&MessagesBuffer::read, this);
-    m_thread->detach();
-}
-
-void MessagesBuffer::read()
-{
-    auto it = m_messages.begin();
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(delay));
-
-        std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
-        l.try_lock_for(std::chrono::milliseconds(30));
-
-        if (it != m_messages.end()) {
-            // mostrar conteudo
-            nlohmann::json jsonVector;
-            it->second >> jsonVector;
-            std::cout << static_cast<int>(it->first) << " : " << jsonVector << std::endl;
-
-            it = m_messages.erase(it);
-        } else {
-            it = m_messages.begin();
-        }
-    }
-}
-
 void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
@@ -110,9 +83,11 @@ void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
     messageObj.save<std::int8_t>(id);
     messageObj << message;
 
-    m_messages.insert(std::make_pair(id, messageObj));
+    m_messages[id] = messageObj;
 
-    m_currMessage = messageObj;
+    if (std::find(std::begin(m_currIndex), std::end(m_currIndex), id) == std::end(m_currIndex)) {
+        m_currIndex.push_back(id);
+    }
 }
 
 auto MessagesBuffer::getCurrMessage() -> nlohmann::json
@@ -121,6 +96,18 @@ auto MessagesBuffer::getCurrMessage() -> nlohmann::json
     l.try_lock_for(std::chrono::milliseconds(30));
 
     nlohmann::json json;
-    m_currMessage >> json;
+    if (m_currIndex.empty()) {
+        json["data"];
+        return json;
+    }
+
+    nlohmann::json jsonVector;
+    m_messages[m_currIndex.front()] >> jsonVector;
+
+    json["data"] = jsonVector;
+
+    std::cout << "sent message with id " << static_cast<int>(m_currIndex.front()) <<  std::endl;
+
+    m_currIndex.pop_front();
     return json;
 }

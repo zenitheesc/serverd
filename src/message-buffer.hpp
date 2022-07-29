@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
+#include <deque>
 #include <iostream>
-#include <map>
 #include <mutex>
 #include <nlohmann/json.hpp>
 #include <string>
@@ -18,6 +18,7 @@ private:
 
 public:
     explicit Message(std::size_t maxSize);
+    Message() = default;
 
     template <typename T>
     void save(const nlohmann::json& json);
@@ -29,18 +30,12 @@ public:
 class MessagesBuffer {
 private:
     std::timed_mutex m_mutex;
-    std::unique_ptr<std::thread> m_thread;
 
-    std::map<std::uint8_t, Message> m_messages;
-    int delay;
-
-    Message m_currMessage;
-
-    void read();
+    static constexpr int MAX_ID = 256;
+    std::array<Message, MAX_ID> m_messages;
+    std::deque<std::uint8_t> m_currIndex;
 
 public:
-    explicit MessagesBuffer(int m_delay);
-
     auto getCurrMessage() -> nlohmann::json;
     void write(std::uint8_t id, const nlohmann::json& message);
 };
