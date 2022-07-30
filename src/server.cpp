@@ -36,7 +36,14 @@ public:
 
         m_svr.Post("/", [&](const httplib::Request& req, httplib::Response& res) {
             nlohmann::json receivedJson;
-            receivedJson = nlohmann::json::parse(req.body);
+
+            if (req.body.rfind("\"{\\",0) != 0) {
+                receivedJson = nlohmann::json::parse(req.body);
+            } else {
+                std::string aux = req.body;
+                utils::formatBIPS(aux);
+                receivedJson = nlohmann::json::parse(aux);
+            }
 
             std::uint8_t id = receivedJson["equipe"];
             nlohmann::json payload = receivedJson["payload"];

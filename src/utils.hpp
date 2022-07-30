@@ -11,4 +11,5 @@
 
 namespace utils {
 void saveJson(const nlohmann::json& json, std::filesystem::path path = std::filesystem::current_path());
+void formatBIPS(std::string& message);
 }
