@@ -17,10 +17,11 @@ class ServerdService : public RoutineService {
     static const int buffer_size = 10;
 
 public:
-    explicit ServerdService(const char* host, const int port)
+    explicit ServerdService(const char* host, const int port, const nlohmann::json data)
         : RoutineService { "serverd" }
         , m_host { host }
         , m_port { port }
+        , m_buffer { data["numBytes"] }
     {
     }
 
@@ -88,7 +89,7 @@ auto main(int argc, char* argv[]) -> int
     }
 
     Daemon serverd { "serverd" };
-    ServerdService serverdService { host, port };
+    ServerdService serverdService { host, port, serverd.getConfigHandler()["data"] };
     serverd.deploy(serverdService);
     serverd.run();
 

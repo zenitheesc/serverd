@@ -3,5 +3,7 @@
 	"proxys": {
 		"serverd": {}
 	},
-	"data": {}
+	"data": {
+		"numBytes": 91
+	}
 }
