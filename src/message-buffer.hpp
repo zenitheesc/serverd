@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include <cstddef>
 #include <deque>
 #include <iostream>
 #include <mutex>
@@ -35,7 +36,11 @@ private:
     std::array<Message, MAX_ID> m_messages;
     std::deque<std::uint8_t> m_currIndex;
 
+    std::size_t m_numBytes;
+
 public:
+    explicit MessagesBuffer(std::size_t numBytes);
+
     auto getCurrMessage() -> nlohmann::json;
     void write(std::uint8_t id, const nlohmann::json& message);
 };

@@ -72,13 +72,15 @@ void Message::operator>>(nlohmann::json& json)
     json = m_message;
 }
 
+MessagesBuffer::MessagesBuffer(std::size_t numBytes)
+    : m_numBytes { numBytes } {};
+
 void MessagesBuffer::write(std::uint8_t id, const nlohmann::json& message)
 {
     std::unique_lock<std::timed_mutex> l(m_mutex, std::defer_lock);
     l.try_lock_for(std::chrono::milliseconds(30));
 
-    constexpr int numBytes = 90;
-    Message messageObj(numBytes);
+    Message messageObj(m_numBytes);
 
     messageObj.save<std::int8_t>(id);
     messageObj << message;
